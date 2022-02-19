@@ -6,6 +6,13 @@ from fastapi import FastAPI
 from fastapi import Request
 import requests
 
+import sys
+import uvicorn
+from fastapi import FastAPI,UploadFile,File
+from fastapi.responses import JSONResponse
+import cv2
+import os
+
 app = FastAPI()
 
 @app.get("/")
@@ -139,3 +146,29 @@ def read_item(item_id: int, q: Optional[str] = None):
 #   -H 'Cookie: Hm_lvt_080dabacb001ad3dc8b9b9049b36d43b=1645175803,1645175814; f_city=%E5%8C%97%E4%BA%AC%7C101010100%7C; Hm_lpvt_080dabacb001ad3dc8b9b9049b36d43b=1645177503' \
 #   --compressed \
 #   --insecure
+
+@app.post("/uploadVideo",summary="接收视频",tags=["视频处理"])
+async def getFaceFeature(file: UploadFile = File(...)):
+    print(f"接收视频")
+    file_bytes = await file.read()  # 读取视频数据
+    context = "视频文件.mp4"    # 写到本地的文件名
+    with open(context,'wb') as f:   # 把视频写入文件
+        f.write(file_bytes)
+    # cap = cv2.VideoCapture(context)     # 读取视频数据
+    # fps = cap.get(cv2.CAP_PROP_FPS)     # 统计视频的帧率
+    # print('帧率 ', fps)
+    # total_s = cap.get(cv2.CAP_PROP_FRAME_COUNT)     # 统计视频的帧数
+    # print("帧数 = ", total_s)
+    # if cap.isOpened():          # 展示视频（没有音频）
+    #     while True:
+    #         ok,frame = cap.read()       # 逐帧读取图像
+    #         if ok:
+    #             cv2.imshow('1',frame)       # 显示单帧图像
+    #             cv2.waitKey(int(1000/fps-1))    # 根据帧率，延时显示下一张
+    #         else:
+    #             cv2.destroyAllWindows()
+    #             break       # 关闭图像窗口，退出循环
+
+    result = {'文件名':file.filename,'文件大小':sys.getsizeof(file_bytes)} # 返回接收到的视频文件的文件名和文件大小
+    print(result)
+    return JSONResponse(content=result)
