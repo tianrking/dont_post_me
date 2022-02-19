@@ -32,11 +32,41 @@ def return_hello(request:Request):
     response = requests.get('https://ipapi.co/%s/json/'%client_host, headers=headers)  ## 获取用户ip 地址
     data_clean = json.loads(response.text)
 
+    chinese_dict = ""
+    with open('./city_pinyin_chinese.json',encoding='utf-8') as f:
+        chinese_dict = f.read().strip().replace('\n',"")
+        chinese_dict = json.loads(chinese_dict)
+        # print(chinese_dict)
+        f.close()
+        # return chinese_dict
+
     ##############
     # print(data_clean)
-    # return data_clean
-    print(client_host,client_port)
-    ##########  天气 信息获取
+    # data_clean[]
+    data_return = ""
+    try:
+        _city = chinese_dict[data_clean['city']]
+        data_clean['city_code'] = get_city_code(_city)['AREAID']
+        chaos_weather = get_city_weather(data_clean['city_code'])
+        data_clean['weather'] = chaos_weather
+        try:
+            data_clean['weather'] = str(chaos_weather).split("\=")[1]
+        except:
+            pass
+        return data_clean
+    except:
+        return  "I can't get ur information via %s" % client_host
+
+
+
+    # return data_return
+    # return chinese_dict
+    # print(client_host,client_port)
+    # return {"ip":client_host,"port":client_port}
+
+@app.get("/v0.5/weather/{_city_code}")
+def get_city_weather(_city_code):
+    #########  天气 信息获取
     class Weather:
         cookies = {
         'Hm_lvt_080dabacb001ad3dc8b9b9049b36d43b': '1645175803,1645175814',
@@ -55,10 +85,29 @@ def return_hello(request:Request):
         params = (
             ('_', '1645177503970'),
         )
-    
-    response = requests.get('http://d1.weather.com.cn/dingzhi/101010100.html', headers=Weather.headers, params=Weather.params, cookies=Weather.cookies, verify=False)
+    # _city_code=101010200
+    url = 'http://d1.weather.com.cn/dingzhi/%s.html'%int(_city_code) 
+    print(url)                                               #   101010100
+    response = requests.get(url, headers=Weather.headers, params=Weather.params, cookies=Weather.cookies, verify=False)
     response.encoding='utf-8'
     return response.text
+ 
+ 
+@app.get("/v0.5/code/{_city}")
+def get_city_code(_city):
+    JS=''
+    with open('./city.json',encoding='utf-8') as f:
+        JS = f.readline()
+        # print(JS)
+    JS = json.loads(JS)
+    _all_area={}
+    for province in JS:
+        for city in JS[province]:
+            # _all_area.append(city)
+            _all_area.update(JS[province][city])
+    # return 
+    # return JS
+    return _all_area[_city]
 
 
 

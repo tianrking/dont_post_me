@@ -7,9 +7,9 @@ import fs from 'fs'
 const data = JSON.stringify(city_data)
 console.log(data)
 
-fs.write(JSON.parse(data))
+// fs.write(JSON.parse(data))
 
-fs.writeFile('./city.json', JSON.parse(data), function (err) {
+fs.writeFile('./city.json', data, function (err) {
     if (err) {
         console.error(err);
     }
