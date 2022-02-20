@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>I ❤️ React</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <div id="example"></div>
+    <div id="gg"></div>
+    <div id="fhzj"></div>
+    <div id="sz"></div>
+    <div id="weather"></div>
+
+    <script type="text/babel">
+
+        const element = <h1>Start</h1>;
+        ReactDOM.render(
+            element,
+            document.getElementById('example')
+        );
+
+
+        {/*React 组件...*/ }
+        function HelloMessage(props) {
+            return <h1>  </h1>;
+        }
+
+        const element_zj = <HelloMessage />;
+
+        {/*css...*/ }
+        var myStyle = {
+            fontSize: 10,
+            color: '#FF0000'
+        };
+
+        {/*复合组件...*/ }
+
+        var information_myStyle = {
+            fontSize: 6,
+            color: '#FF0000'
+        };
+
+        function Name(props) {
+            return <h1>author：{props.name}</h1>;
+        }
+        function Url(props) {
+            return <h1>website：{props.url}</h1>;
+        }
+        function Nickname(props) {
+            return <h1>{props.nickname}</h1>;
+        }
+        function App() {
+            return (
+                <div style = {information_myStyle}>
+                    <Name name="w0x7ce" />
+                    <Url url="https://me.w0x7ce.eu" />
+                    <Nickname nickname="" />
+                </div>
+            );
+        }
+
+        // const numbers = [1, 2, 3, 4, 5];
+        // const listItems = numbers.map((numbers) =>
+        // <li>{numbers}</li>
+        // );
+
+        function NumberList(props) {
+            const numbers = props.numbers;
+            const listItems = numbers.map((number) =>
+                <li key={number.toString()}>
+                    {number}
+                </li>
+            );
+            return (
+                <ul>{listItems}</ul>
+            );
+        }
+
+        function tick() {
+            const element = (
+                <div>
+                    <h1>w0x7ce</h1>
+                    <h2 style={myStyle} >现在是 {new Date().toLocaleTimeString()}</h2>
+                    <h3>{1 > 2 ? "a" : ""}</h3>
+
+                </div>
+            );
+            ReactDOM.render(
+                element,
+                document.getElementById('example')
+            );
+
+            ReactDOM.render(
+                element_zj,
+                document.getElementById('gg')
+            );
+            ReactDOM.render(
+                <App />,
+                document.getElementById('fhzj')
+            );
+
+            // const numbers = [1, 2, 3, 4, 5];
+            // ReactDOM.render(
+            //     <NumberList numbers={numbers} />,
+            //     document.getElementById('sz')
+            // )
+        }
+
+        setInterval(tick, 1000);
+
+        axios.get('http://49.234.208.23:1234/')
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+
+
+
+
+        var data_Style = {
+            fontSize: 20,
+            color: '#00FF00'
+        };    
+        class MostStar extends React.Component {
+            state = {
+                repoName:'',
+                repoUrl: ''
+            }
+            componentDidMount() {
+                //方式1、使用axio发送异步ajax请求
+                const url = 'http://49.234.208.23:1234/'
+                // axios.get(url)
+                //     .then(response => {
+                //         const result = response.data;
+                //         // const {name,html_url} = result.items[0];
+                //         this.setState({repoName:result,repoUrl:result});
+                //     })
+                //方式2、使用fetch()发生请求
+                fetch(url)
+                    .then(response => {
+                        return response.text() // .json()
+                    })
+                    .then(data=>{
+                        //得到数据
+                        // const {name,html_url} = data.items[0];
+                        this.setState({get_data:data});
+                    })
+            }
+            render() {
+                const {get_data} = this.state
+                if(!get_data){
+                    return (
+                        <h6>Loading...</h6>
+                    )
+                }else {
+                    // city = get_data['city'] ;
+                    return (
+                        
+                        <h6 style = {data_Style}>{  get_data }</h6>
+                    )
+                }
+            }
+        }
+        ReactDOM.render(<MostStar/>,document.getElementById('weather'))
+
+    </script>
+</body>
+</html>
