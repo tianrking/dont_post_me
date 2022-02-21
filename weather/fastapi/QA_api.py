@@ -1,19 +1,30 @@
 import pandas as pd
 import json 
 
+from fastapi import Cookie, FastAPI
 from typing import Optional
 from fastapi import FastAPI
 from fastapi import Request
 import requests
-
+from typing import List, Optional
 import sys
 import uvicorn
 from fastapi import FastAPI,UploadFile,File
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Header
 import cv2
 import os
 
+# 'Access-Control-Allow-Origin'
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def return_hello(request:Request):
@@ -119,9 +130,11 @@ def get_city_code(_city):
 
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/ip")
+def get_ip(request:Request,x_token: Optional[List[str]] = Header(None),accept_encoding: Optional[str] = Header(None),user_agent: Optional[str] = Header(None),cookie: Optional[str] = Cookie(None)):
+    client_host = request.client.host
+    client_port = request.client.port
+    return {"ip":client_host,"port":client_port,"X-Token values": x_token,"Accept-Encoding": accept_encoding,"User-Agent": user_agent,"cookie": cookie}
 
 
 ## thanks https://tool.lu/curl/
