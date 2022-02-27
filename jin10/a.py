@@ -1,3 +1,4 @@
+from tokenize import group
 import fastapi
 from h11 import Data
 import requests
@@ -19,6 +20,10 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Header
 
+<<<<<<< HEAD
+=======
+import os
+>>>>>>> 819d89825d24fce745fbdf90381082f63f673ca6
 
 headers = {
     'authority': 'www.jin10.com',
@@ -52,7 +57,18 @@ while True:
         pass
     else:
         latest_msg = clean_data[0]['data']['content']
+<<<<<<< HEAD
         # print(latest_msg)
+=======
+        # sned_msg = "http://127.0.0.1:5700/send_msg?user_id=973577275&message=%s" % latest_msg
+        # sned_msg = "http://127.0.0.1:5700/send_msg?user_id=2966855301&message=%s" % latest_msg
+        # sned_msg = "http://127.0.0.1:5700/send_msg?group_id=765096903&message=" + str(latest_msg)
+        # sned_msg = "http://127.0.0.1:5700/send_msg?group_id=793485214&message=a" % latest_msg
+        sned_msg = "http://127.0.0.1:5700/send_msg?group_id=971732997&message=%s" % latest_msg
+        
+        print(latest_msg)
+        requests.get(sned_msg)
+>>>>>>> 819d89825d24fce745fbdf90381082f63f673ca6
 
 print(latest_msg)
 
