@@ -1,5 +1,7 @@
 import fastapi
+from h11 import Data
 import requests
+import jsonlines
 
 import pandas as pd
 import json 
@@ -12,6 +14,7 @@ import requests
 from typing import List, Optional
 import sys
 from sklearn.datasets import clear_data_home
+from sympy import content
 import uvicorn
 from fastapi import FastAPI,UploadFile,File
 from fastapi.responses import JSONResponse
@@ -39,14 +42,20 @@ params = (
     ('t', '1645929628705'),
 )
 
-response = requests.get('https://www.jin10.com/flash_newest.js', headers=headers, params=params)
-clean_data = response.text.replace('var newest = [',"{")[:-2]
-# clean_data = clean_data.join([clean_data,"}"])
-# clean_data = json.loads(clean_data)
-print(clean_data)
-# print(response.text)
+latest_msg = ""
+while True:
+    response = requests.get('https://www.jin10.com/flash_newest.js', headers=headers, params=params)
+    clean_data = response.text.replace('var newest = ',"")[:-1]
 
-#NB. Original query string below. It seems impossible to parse and
-#reproduce query strings 100% accurately so the one below is given
-#in case the reproduced version is not "correct".
-# response = requests.get('https://www.jin10.com/flash_newest.js?t=1645929628705', headers=headers)
+    clean_data = json.loads(clean_data)
+
+    
+
+    if latest_msg == clean_data[0]['data']['content']:
+        pass
+    else:
+        latest_msg = clean_data[0]['data']['content']
+        print(latest_msg)
+
+print(latest_msg)
+
