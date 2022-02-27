@@ -42,10 +42,9 @@ params = (
 )
 
 latest_msg = ""
-msg_get = []
 
-def get_jin10_news(_n):
-    _n = str(_n)
+def get_jin10_news(_n,msg_get):
+   
     response = requests.get('https://www.jin10.com/flash_newest.js', headers=headers, params=params)
     clean_data = response.text.replace('var newest = ',"")[:-1]
 
@@ -53,8 +52,9 @@ def get_jin10_news(_n):
 
     for i in range (0,_n):
         msg_get.append(clean_data[i]['data']['content'])
-    
     return msg_get
+    
+   
     # if latest_msg == clean_data[0]['data']['content']:
     #     pass
     # else:
@@ -77,9 +77,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.route("/{n}")
-def get_jin10(n):
-    get_jin10_data = get_jin10_news(n)
-    return json.dumps(get_jin10_data)
+@app.get("/{nn}")
+def get_jin10(nn):
+    msg_get = []
+    nn = int(nn)
+    get_jin10_data = get_jin10_news(nn,msg_get)
+    # print(get_jin10_data)
+    return get_jin10_data
+    # return json.dumps(get_jin10_data)
         
         
