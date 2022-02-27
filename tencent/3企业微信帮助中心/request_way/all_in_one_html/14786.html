@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="no-siteapp" http-equiv="Cache-Control" />
+  <title>服务器暂时不可用</title>
+  <style>
+    html,body{margin: 0;padding: 0;font-family: BlinkMacSystemFont, "Helvetica", "lucida Grande", "PingFang SC", "SCHeiti", "Microsoft YaHei";background: #e9eaeb;}
+
+    .frame_can{width: 1080px;margin: 0 auto;overflow: hidden;*zoom:1;}
+
+    .frame_head{background-color: #335883;min-width: 1080px;}
+    .frame_logo{float:left;background: url("//wwcdn.weixin.qq.com/node/ww/wwmng/style/images/independent/error/WeworkLogo$51197274.png")  no-repeat left top;background-size:89px 23px;width: 89px;height: 23px;margin-top: 4px;}
+    .frame_operation{float: right;height: 31px;line-height: 31px;font-size: 12px;}
+    .frame_operation a {border-left: 1px solid #fff;margin-left: 7px;padding-left: 7px;color: #fff;text-decoration: none;}
+    .frame_operation a:hover {text-decoration: underline;}
+    .frame_operation_help{border-left: none !important;}
+    .frame_cntWrap{width: 1080px;margin:24px auto 37px;background-color: #FFFFFF;overflow: hidden;border-radius: 4px;box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.15);}
+    .frame_cnt {overflow: hidden;*zoom:1;}
+    .frame_cnt_text{overflow: hidden;*zoom:1;}
+    .frame_cnt_text h2{color: #4382CB;font-size: 64px;font-family:"Helvetica Neue Light","Microsoft YaHei";}
+    .frame_cnt_text_des{font-size: 18px;margin-bottom: 16px;}
+    .frame_cnt_text_operate{font-size: 14px;color: #999999;}
+    .frame_cnt_text a{color: #4382C2;text-decoration: none;}
+    .frame_cnt_text a:hover{text-decoration: underline;}
+
+    .frame_foot {text-align: center;padding-bottom: 23px;color: #9E9E9E;font-size: 12px;}
+    .frame_foot_nav {margin-bottom: 2px;line-height: 1.08;}
+    .frame_foot_nav_item {text-decoration: none;color: #9E9E9E;}
+    .frame_foot_nav_item:hover {text-decoration: underline;}
+    .frame_foot_nav_itemDep {margin: 0 7px;}
+    .frame_foot_copyright {line-height: 1.08;margin: 0;}
+
+    @media only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio:2){
+      .frame_logo{background-image: url("//wwcdn.weixin.qq.com/node/ww/wwmng/style/images/independent/error/WeworkLogo_2x$5e7766a5.png");}
+      .frame_cnt_img{content: url(//wwcdn.weixin.qq.com/node/ww/wwmng/style/images/independent/error/500_2x.png)}
+    }
+
+    .serverError .frame_cnt{padding: 166px 0 173px 230px;}
+    .serverError .frame_cnt_img {float: left;width: 307px;height: 211px;margin-right: 27px;}
+    .serverError .frame_cnt_text h2 {margin: 44px 0 15px;}
+
+    .contactDlgBox a {
+      text-decoration: none;
+    }
+    .contactDlgBox .ww_dialog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -196px;
+      margin-left: -313px;
+    }
+    .ww_mask {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #000;
+      -webkit-opacity: 0.3;
+      -moz-opacity: 0.3;
+      opacity: 0.3;
+      filter: alpha(opacity=30);
+      -khtml-opacity: 0.3;
+    }
+    .qui_dialog {
+      position: absolute;
+      z-index: 100;
+      min-width: 360px;
+      _width: 360px;
+      background: #fdfdfd;
+      border: none;
+      border-radius: 2px;
+    }
+
+    .qui_dialog_head {
+      background: #416991;
+      border-bottom: none;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .qui_dialog_title {
+      height: 32px;
+      line-height: 32px;
+      font-size: 13px;
+      font-weight: normal;
+      color: #E6E6E6;
+    }
+
+    .qui_dialog_close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .qui_dialog_body {
+      background: #FDFDFD;
+    }
+
+    .qui_dialog_body:last-child {
+      border-radius: 0 0 2px 2px;
+    }
+
+    .ww_dialog {
+      -webkit-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.3);
+      min-width: 400px;
+      max-width: 435px;
+    }
+
+    @media \0screen {
+      .ww_dialog {
+        border: 1px solid #B4BEC8;
+      }
+    }
+    .ww_dialog_title {
+      margin-left: 16px;
+    }
+
+    .ww_dialog_close {
+      line-height: 0;
+    }
+
+    .ww_dialog_body {
+      padding: 24px;
+      font-size: 14px;
+      position: relative;
+    }
+    .ww_dialog_body input {
+      display: inline;
+    }
+
+    .ww_dialog_NoFoot {
+      min-width: 462px;
+      max-width: none;
+    }
+    .ww_dialog_NoFoot .ww_dialog_body {
+      text-align: center;
+      border-radius: 0 0 2px 2px;
+    }
+
+    .contactUsDlg {
+      text-align: center;
+      width: 552px;
+      padding: 15px 0 60px;
+    }
+
+    .contactUsDlg_title {
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .contactUsDlg_cnt {
+      padding-top: 30px;
+      font-size: 0;
+    }
+
+    .contactUsDlg_item {
+      position: relative;
+      font-size: 14px;
+      width: 200px;
+      height: 200px;
+      display: inline-block;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 1px solid #E4E6E9;
+      border-radius: 4px;
+      vertical-align: top;
+      cursor: pointer;
+    }
+
+
+    .contactUsDlg_item:first-child {
+      margin-right: 20px;
+    }
+
+    .contactUsDlg_item_iconBox {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      border-radius: 4px;
+      text-align: center;
+      z-index: 10;
+      opacity: 1;
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+      background: #FDFDFD;
+    }
+
+    .contactUsDlg_item_iconBox .contactUsDlg_item_iconBox_weworkIcon,
+    .contactUsDlg_item_iconBox .contactUsDlg_item_iconBox_wechatIcon {
+      margin-top: 50px;
+      vertical-align: top;
+    }
+
+    .contactUsDlg_item_iconBox_title {
+      padding-top: 20px;
+      font-size: 14px;
+      line-height: 22px;
+      color: #000;
+    }
+
+    .contactUsDlg_item_qRCodeBox_qRCode {
+      display: inline-block;
+      width: 102px;
+      height: 102px;
+      vertical-align: top;
+      margin-bottom: 7px;
+      margin-top: 27px;
+      opacity: 1;
+      -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+      transform-origin: center;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+    }
+
+    .contactUsDlg_item_qRCodeBox_title {
+      font-size: 14px;
+      line-height: 22px;
+      color: #000;
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      -webkit-transform: translate(0, 10px);
+      -ms-transform: translate(0, 10px);
+      transform: translate(0, 10px);
+    }
+
+    .contactUsDlg_item_qRCodeBox_desc {
+      font-size: 12px;
+      color: #787878;
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      -webkit-transform: translate(0, 10px);
+      -ms-transform: translate(0, 10px);
+      transform: translate(0, 10px);
+    }
+
+    .contactUsDlg_item:hover {
+      text-decoration: none;
+    }
+
+    .contactUsDlg_item:hover .contactUsDlg_item_iconBox {
+      opacity: 0;
+      -webkit-transform: scale(0.8);
+      -ms-transform: scale(0.8);
+      transform: scale(0.8);
+    }
+
+    .contactUsDlg_item:hover .contactUsDlg_item_qRCodeBox_qRCode {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+      opacity: .8;
+    }
+
+    .contactUsDlg_item:hover .contactUsDlg_item_qRCodeBox_title {
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      transform: translate(0, 0);
+    }
+
+    .contactUsDlg_item:hover .contactUsDlg_item_qRCodeBox_desc {
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      transform: translate(0, 0);
+    }
+
+    .contactUsDlg_item_iconBox_weworkIcon {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0;
+      line-height: 0;
+      width: 76px;
+      height: 62px;
+      background: url("https://wwcdn.weixin.qq.com/node/wework/images/20170831WeworkLogo.png") left top no-repeat;
+      background-size: 76px 62px;
+    }
+
+    .contactUsDlg_item_iconBox_wechatIcon {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 0;
+      line-height: 0;
+      width: 76px;
+      height: 62px;
+      background: url("https://wwcdn.weixin.qq.com/node/wework/images/20170831WeChatLogo.png") left top no-repeat;
+      background-size: 76px 62px;
+    }
+    .ww_commonImg {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      font-size: 0;
+      background-repeat: no-repeat;
+      background-image: url(//wwcdn.weixin.qq.com/node/ww/wwmng/style/images/independent/error/contactUs/errorImage20160417_1x.png);
+      background-size: 74px 516px;
+    }
+    @media (-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+      .ww_commonImg {
+        background-image: url(//wwcdn.weixin.qq.com/node/ww/wwmng/style/images/independent/error/contactUs/errorImage20160417_2x.png)
+      }
+      .contactUsDlg_item_iconBox_weworkIcon {
+        background-image: url("https://wwcdn.weixin.qq.com/node/wework/images/20170831WeworkLogo_2x.png");
+      }
+      .contactUsDlg_item_iconBox_wechatIcon {
+        background-image: url("https://wwcdn.weixin.qq.com/node/wework/images/20170831WeChatLogo_2x.png");
+      }
+    }
+
+    .ww_commonImg_CloseDialog {
+      background-position: 0 0;
+      height: 12px;
+      width: 12px;
+    }
+  </style>
+</head>
+<body>
+<div class="serverError">
+  <div class="frame_head">
+    <div class="frame_can">
+      <a class="frame_logo" href="/wework_admin/frame"></a>
+      <div class="frame_operation">
+        <a class="frame_operation_help" href="http://kf.qq.com/product/qyweixin.html?scene_id=pc349" target="_blank">帮助中心</a>
+      </div>
+    </div>
+  </div>
+  <div class="frame_cntWrap">
+    
+    <div class="frame_cnt">
+      <img src="//wwcdn.weixin.qq.com/node/ww/wwmng/style/images/independent/error/500.png" alt="" class="frame_cnt_img"/>
+      <div class="frame_cnt_text">
+        <h2>500</h2>
+        <div class="frame_cnt_text_des">服务器遇到错误，无法完成请求</div>
+        <div class="frame_cnt_text_operate">目前我们正在努力解决该问题</div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="frame_foot">
+    <div class="frame_can">
+      <div class="frame_foot_nav">
+        <a class="frame_foot_nav_item" href="http://www.tencent.com/" target="_blank">关于腾讯</a>
+        <span class="frame_foot_nav_itemDep">|</span>
+        <a class="frame_foot_nav_item" href="https://work.weixin.qq.com/eula" target="_blank">用户协议</a>
+        <span class="frame_foot_nav_itemDep">|</span>
+        <a class="frame_foot_nav_item" href="http://kf.qq.com/product/qyweixin.html?scene_id=pc349" target="_blank">帮助中心</a>
+        <span class="frame_foot_nav_itemDep">|</span>
+        <a class="frame_foot_nav_item" href="javascript:;" id="contact_us_btn">联系客服</a>
+      </div>
+      <p class="frame_foot_copyright">© 1998&nbsp;-&nbsp;2022&nbsp;Tencent Inc. All Rights Reserved</p>
+    </div>
+  </div>
+</div>
+
+<!-- 意见反馈 -->
+<div class="contactDlgBox" id="contactDlg" style="display: none;">
+  <div class="qui_dialog ww_dialog ww_dialog_NoFoot">
+    <div class="qui_dialog_head ww_dialog_head">
+      <div class="qui_dialog_title ww_dialog_title">联系客服</div>
+      <a class="qui_dialog_close ww_dialog_close ww_commonImg ww_commonImg_CloseDialog" id="dlg_close_btn" href="javascript:;"></a>
+    </div>
+    <div class="qui_dialog_body ww_dialog_body">
+      <!--<div class="contactUsDlg">-->
+      <!--<div class="contactUsDlg_title">你可以通过以下方式联系我们</div>-->
+      <!--<a href="javascript:;" class="contactUsDlg_item contactUsDlg_item_First">-->
+      <!--<div class="contactUsDlg_item_iconBox">-->
+      <!--<div class="ww_commonImg ww_commonImg_WechatMonochrome contactUsDlg_item_iconBox_normalIcon"></div>-->
+      <!--<div class="ww_commonImg ww_commonImg_WeworkWexinMonochrome contactUsDlg_item_iconBox_hoveredIcon"></div>-->
+      <!--</div>-->
+      <!--<div class="contactUsDlg_item_title">微信公众号</div>-->
+      <!--</a>-->
+      <!--<a href="http://weibo.com/u/5877022208" class="contactUsDlg_item" target="_blank">-->
+      <!--<div class="contactUsDlg_item_iconBox">-->
+      <!--<div class="ww_commonImg ww_commonImg_WeiboMonochrome contactUsDlg_item_iconBox_normalIcon"></div>-->
+      <!--<div class="ww_commonImg ww_commonImg_WeiboPolychrome contactUsDlg_item_iconBox_hoveredIcon"></div>-->
+      <!--</div>-->
+      <!--<div class="contactUsDlg_item_title">新浪微博</div>-->
+      <!--</a>-->
+      <!--<a href="mailto:work_weixin@qq.com" class="contactUsDlg_item">-->
+      <!--<div class="contactUsDlg_item_iconBox">-->
+      <!--<div class="ww_commonImg ww_commonImg_MailMonochrome contactUsDlg_item_iconBox_normalIcon"></div>-->
+      <!--<div class="ww_commonImg ww_commonImg_MailPolychrome contactUsDlg_item_iconBox_hoveredIcon"></div>-->
+      <!--</div>-->
+      <!--<div class="contactUsDlg_item_title">发送邮件至<br><span class="contactUsDlg_item_title_smallTxt">work_weixin@qq.com</span></div>-->
+      <!--</a>-->
+      <!--</div>-->
+
+      <div class="contactUsDlg">
+        <div class="contactUsDlg_title">你可通过以下两种方式联系客服</div>
+        <div class="contactUsDlg_cnt">
+          <a href="javascript:;" class="contactUsDlg_item">
+            <div class="contactUsDlg_item_iconBox">
+              <!--<div class="ww_commonImg ww_commonImg_WeworkLogo"></div>-->
+              <span class="contactUsDlg_item_iconBox_weworkIcon"></span>
+              <div class="contactUsDlg_item_iconBox_title">企业微信</div>
+            </div>
+            <div class="contactUsDlg_item_qRCodeBox">
+              <img class="contactUsDlg_item_qRCodeBox_qRCode" src="https://wwcdn.weixin.qq.com/node/wework/images/20170904WeWorkTeamQRcode.png" alt="企业微信二维码">
+              <div class="contactUsDlg_item_qRCodeBox_title">企业微信扫码</div>
+              <div class="contactUsDlg_item_qRCodeBox_desc">向企业微信客服反馈问题</div>
+            </div>
+          </a>
+          <a href="javascript:;" class="contactUsDlg_item">
+            <div class="contactUsDlg_item_iconBox">
+              <!--<div class="ww_commonImg ww_commonImg_WeChatLogo"></div>-->
+              <span class="contactUsDlg_item_iconBox_wechatIcon"></span>
+              <div class="contactUsDlg_item_iconBox_title">微信公众号</div>
+            </div>
+            <div class="contactUsDlg_item_qRCodeBox">
+              <img class="contactUsDlg_item_qRCodeBox_qRCode" src="https://wwcdn.weixin.qq.com/node/wework/images/LoginWeChatMpQRCode.16e5235869.png" alt="微信公告号">
+              <div class="contactUsDlg_item_qRCodeBox_title">微信扫码</div>
+              <div class="contactUsDlg_item_qRCodeBox_desc">关注公众号后反馈问题</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="qui_mask ww_mask"></div>
+</div>
+
+
+<script>
+  var dialogEl = document.getElementById('contactDlg');
+  document.getElementById('contact_us_btn').onclick = function()
+  {
+    dialogEl.style.display = 'block';
+  }
+
+  document.getElementById('dlg_close_btn').onclick = function()
+  {
+    dialogEl.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
+
+<script type="text/errormsg" style="display:none;">
+  <!--cgi exception--><!--cgierrorcode:-1234--><!--cgihumanMessage:服务器异常，请稍候再试-->
+</script>
