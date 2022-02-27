@@ -1,7 +1,6 @@
 import fastapi
 from h11 import Data
 import requests
-import jsonlines
 
 import pandas as pd
 import json 
@@ -12,16 +11,14 @@ from fastapi import FastAPI
 from fastapi import Request
 import requests
 from typing import List, Optional
-import sys
 from sklearn.datasets import clear_data_home
 from sympy import content
-import uvicorn
+
 from fastapi import FastAPI,UploadFile,File
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Header
-import cv2
-import os
+
 
 headers = {
     'authority': 'www.jin10.com',
@@ -55,7 +52,7 @@ while True:
         pass
     else:
         latest_msg = clean_data[0]['data']['content']
-        print(latest_msg)
+        # print(latest_msg)
 
 print(latest_msg)
 
