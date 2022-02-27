@@ -20,10 +20,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Header
 
-<<<<<<< HEAD
-=======
 import os
->>>>>>> 819d89825d24fce745fbdf90381082f63f673ca6
 
 headers = {
     'authority': 'www.jin10.com',
@@ -45,30 +42,44 @@ params = (
 )
 
 latest_msg = ""
-while True:
+msg_get = []
+
+def get_jin10_news(_n):
+    _n = str(_n)
     response = requests.get('https://www.jin10.com/flash_newest.js', headers=headers, params=params)
     clean_data = response.text.replace('var newest = ',"")[:-1]
 
     clean_data = json.loads(clean_data)
 
+    for i in range (0,_n):
+        msg_get.append(clean_data[i]['data']['content'])
     
-
-    if latest_msg == clean_data[0]['data']['content']:
-        pass
-    else:
-        latest_msg = clean_data[0]['data']['content']
-<<<<<<< HEAD
-        # print(latest_msg)
-=======
-        # sned_msg = "http://127.0.0.1:5700/send_msg?user_id=973577275&message=%s" % latest_msg
-        # sned_msg = "http://127.0.0.1:5700/send_msg?user_id=2966855301&message=%s" % latest_msg
-        # sned_msg = "http://127.0.0.1:5700/send_msg?group_id=765096903&message=" + str(latest_msg)
-        # sned_msg = "http://127.0.0.1:5700/send_msg?group_id=793485214&message=a" % latest_msg
-        sned_msg = "http://127.0.0.1:5700/send_msg?group_id=971732997&message=%s" % latest_msg
+    return msg_get
+    # if latest_msg == clean_data[0]['data']['content']:
+    #     pass
+    # else:
+    #     latest_msg = clean_data[0]['data']['content']
+    #     # sned_msg = "http://127.0.0.1:5700/send_msg?user_id=973577275&message=%s" % latest_msg
+    #     # sned_msg = "http://127.0.0.1:5700/send_msg?user_id=2966855301&message=%s" % latest_msg
+    #     # sned_msg = "http://127.0.0.1:5700/send_msg?group_id=765096903&message=" + str(latest_msg)
+    #     # sned_msg = "http://127.0.0.1:5700/send_msg?group_id=793485214&message=a" % latest_msg
+    #     sned_msg = "http://127.0.0.1:5700/send_msg?group_id=971732997&message=%s" % latest_msg
         
-        print(latest_msg)
-        requests.get(sned_msg)
->>>>>>> 819d89825d24fce745fbdf90381082f63f673ca6
+        # print(latest_msg)
+        # requests.get(sned_msg)
 
-print(latest_msg)
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+@app.route("/{n}")
+def get_jin10(n):
+    get_jin10_data = get_jin10_news(n)
+    return json.dumps(get_jin10_data)
+        
+        
