@@ -82,7 +82,7 @@ def get_jin10(nn):
     msg_get = []
     nn = int(nn)
     get_jin10_data = get_jin10_news(nn,msg_get)
-    # print(get_jin10_data)
+    print(get_jin10_data)
     return get_jin10_data
     # return json.dumps(get_jin10_data)
         
