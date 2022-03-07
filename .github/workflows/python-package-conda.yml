@@ -26,7 +26,13 @@ jobs:
         pip install fastapi
         # install uvicorn
         pip install "uvicorn[standard]"
-    - name: Test with pytest
+    - name: Install Requests
       run: |
-        conda install pytest
-        pytest
+        pip install requests
+    - name: Install Docker
+      run: |
+        pip install fastapi
+        # install uvicorn
+        pip install "uvicorn[standard]"
+
+   
