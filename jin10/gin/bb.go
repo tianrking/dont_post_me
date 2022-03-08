@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"strings"
 )
 
 
@@ -25,6 +26,7 @@ func main() {
 	r.GET("/news", func(c *gin.Context) {
 
 		// https://mholt.github.io/json-to-go/  JSON-to-Go
+		// 先構造json s 再利用 json.Unmarshal(body, &s) 解析
 		type Jin10 struct {
 			IP                 string      `json:"ip"`
 			Version            string      `json:"version"`
@@ -63,12 +65,22 @@ func main() {
         	return
       	}
 		// response := `{"servers":[{"serverName":"Shanghai_VPN","serverIP":"127.0.0.1"},{"serverName":"Beijing_VPN","serverIP":"127.0.0.2"}]}`
+		
+		// defer resp.Body.Close()  //不關閉怎麽樣？
 		body, _ := ioutil.ReadAll(response.Body)
     	var s Jin10
 		
 		json.Unmarshal(body, &s)
-		// json.Unmarshal(response, &s)
-		fmt.Println(s)
+		// json.Unmarshal(response, &s)、
+
+
+		// fmt.Println(s)
+
+		fmt.Printf("%T\n", response)
+		fmt.Printf("%T\n", response.Body)
+		fmt.Printf("%T\n", body)
+		fmt.Printf("%T\n", s)
+
 		c.JSON(200,s)
 
 		// response, err := http.Get("http://49.234.208.23:1234/")
@@ -95,6 +107,45 @@ func main() {
 	
 
 		// c.JSON(200, gin.H{"a":"aa"})
+	})
+
+
+	r.GET("/jin10_diy", func(c *gin.Context) {
+
+		// var ss Jin10_diy
+
+		rsps, err := http.Get("http://49.234.208.23:1234/jin10/3")
+		if err != nil {
+			fmt.Println("Request failed:", err)
+			return
+		}
+		defer rsps.Body.Close()
+	
+		body, err := ioutil.ReadAll(rsps.Body) //uint8
+		if err != nil {
+			fmt.Println("Read body failed:", err)
+			return
+		}
+
+
+		// json.Unmarshal(body, &ss)
+		// c.JSON(200,gin.H{
+		// 	"message": body,
+		// })
+		// c.String(200,string(body))
+		gg_body := strings.Split(string(body), "]")[0]
+		gg_body = strings.Split(string(gg_body), "[")[1]
+		gg_body = strings.Trim(gg_body, "\"")
+		bb := strings.Split(string(gg_body), ",")
+
+		for i,s := range bb{
+			bb[i]=strings.Trim(s, "\"")
+		}
+		
+		fmt.Printf("%T\n",bb)
+		fmt.Printf("%s\n",bb)
+		c.JSON(200,gin.H{"1":bb[0],"2":bb[1],"3":bb[2]})
+		fmt.Println(string(body))
 	})
 
 	r.Run(":8088")
