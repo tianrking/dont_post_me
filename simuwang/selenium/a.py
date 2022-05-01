@@ -70,9 +70,32 @@ funds = soup.find_all('div', {
 
 page_text = driver.page_source
 page_text_list = [driver.page_source]
+time.sleep(2)
+
+# change_page = driver.find_element(By.XPATH, value="//input[@class='w100 h100 tac']")
+# change_page.send_keys(str(2))
+# time.sleep(3)
+# change_page_button_localtion_1 = driver.find_element(By.XPATH, value="//div[@class='dc-home-scroll-tag']")
+# change_page_button_localtion_2 = change_page_button_localtion_1.find_element(By.XPATH, value="//div[@class='comp-pagination comp-common-flex jcc aic']")
+for i in range(0,30):
+    change_page_button = driver.find_element_by_xpath("//*[text()='下一页']")
+    change_page_button.click()
+    time.sleep(4)
+    print(i)
+    page_text_list.append(driver.page_source)
+    file = open(str(i)+'.html','w')
+    file.write(str(driver.page_source))
+    file.close()
+
+
 fund_list = []
 year_yield_list = []
 fund_return_list = []
+page_num = 0
+
+res = pd.DataFrame(columns=("fund_name","Strategy","net","one_month","three_month","half_year"))
+res_temp = pd.DataFrame(columns=("fund_name","Strategy","net","one_month","three_month","half_year"))
+
 
 for source_data in page_text_list:
     dom = etree.HTML(source_data)
@@ -88,6 +111,10 @@ for source_data in page_text_list:
     # print(name_gg)
     for gg in name_gg:
         # print(gg.xpath(".//div[@class='ranking-table-tbody-td tcenter td-focus']/p/text()"))
+        
+        Strategy = gg.xpath(".//div[@class='ranking-table-999']/span/text()")
+        
+        net = gg.xpath(".//div[@class='nav dc-home-333']/text()")
         rr = gg.xpath(".//div[@class='ranking-table-tbody-td tcenter td-focus']/p/text()")
         # print(rr)
         fund_name = gg.xpath(".//a[@class='ranking-table-link txtCut']/@title")
@@ -95,20 +122,30 @@ for source_data in page_text_list:
             one_month = rr[0]
             three_month = rr[1]
             half_year = rr[2]
-            print(fund_name,one_month,three_month,half_year)
+            print(page_num,fund_name,Strategy,net,one_month,three_month,half_year)
+            # res_temp = 
+            res = res.append([{"fund_name":fund_name,"Strategy":Strategy,
+                               "net":net,
+                               "one_month":one_month,"three_month":three_month,
+                               "half_year":half_year}])
+            
+            page_num = page_num + 1
         except:
-            print("Empty")
-    
+            pass
+            # print("Empty")
+    # page_num = page_num + 1
+    # print(page_num)
     # for fund in content:s
     #     # name =  fund.xpath("/div/div[@class='ranking-table-ellipsis']")
     #     name = fund.xpath('./text()')
     #     print(name)
 
-# for index,value in enumerate(fund_list):
-#     print(value,fund_return_list[index])
+print(len(page_text_list))
+
     
 print("w0x7ce")
 print(driver.title)
 
+res.to_excel("fund.xlsx")
 # print(driver.find_elements(By.XPATH,value="//span"))
 driver.quit()
