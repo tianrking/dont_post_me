@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 options = Options()
-# options.headless = True
+options.headless = True
 # options.add_argument("--proxy-server=socks5://127.0.0.1:12999")
 
 # chrome_options.add_argument('--headless')
