@@ -2,6 +2,7 @@
 # playwright codegen https://www.tianyancha.com --save-storage cookie_login
 
 from contextlib import nullcontext
+from statistics import mode
 from time import sleep
 from playwright.sync_api import Playwright, sync_playwright, expect
 import time
@@ -30,7 +31,7 @@ def run(playwright: Playwright) -> None:
         'server': '123.123.123.123:80'
     }
 
-    browser = playwright.chromium.launch(headless=True) # proxy=proxy_to_use,
+    browser = playwright.chromium.launch(headless=False) # proxy=proxy_to_use,
     context = browser.new_context(storage_state="cookie_login") # cookie
 
     # Open new page
@@ -39,15 +40,21 @@ def run(playwright: Playwright) -> None:
     # page.set_extra_http_headers({"myHeader" : "myValue"})
     
     # Go to https://www.tianyancha.com/organize/b5df63030
-    page.goto("https://www.tianyancha.com/organize/b5df63030")
+    page.goto("https://www.tianyancha.com/organize/bceb13031") # IDG
 
     # try:
-    #     df = pd.read_excel("aa.xlsx")
+    #     df = pd.read_excel("IDG.xlsx")
     # except:
     #     df = pd.DataFrame(columns=['公司名称','公司全名','参与轮次','投资时间','投资金额','产品介绍','URL'])
-    #     df.to_excel("aa.xlsx")
+    #     df.to_excel("IDG.xlsx")
 
-    for page_choose in range(1,60):
+
+    df = pd.DataFrame(columns=['公司名称','公司全名','参与轮次','投资时间','投资金额','产品介绍','URL'])
+    
+    for page_choose in range(1,15):
+        
+        # # appended_data = pd.read_excel("IDG.xlsx")
+        # df = pd.DataFrame(columns=['公司名称','公司全名','参与轮次','投资时间','投资金额','产品介绍','URL'])
         
         try:
             page.locator("div:nth-child(7) > div > div:nth-child(2) > .table-footer > .pagination > .pagination-wrap > .pageWrap > div:nth-child(%s)"% page_choose).click()
@@ -61,8 +68,8 @@ def run(playwright: Playwright) -> None:
                 
                 vc = tianyan_vc()
                 
-                for qq in range(8,14):
-                    print(kk[oo*7+qq].inner_text())
+                # for qq in range(8,14):
+                #     print(kk[oo*7+qq].inner_text())
                 
                 vc.company_name = kk[oo*7+8].inner_text()
                 vc.company_full_name = kk[oo*7+9].inner_text()
@@ -78,15 +85,18 @@ def run(playwright: Playwright) -> None:
                 df = df.append({'公司名称':vc.company_name,'公司全名':vc.company_full_name,
                                 '参与轮次':vc.company_vc_state,'投资时间':vc.company_investment_time,'投资金额':vc.company_investment_amount,
                                 '产品介绍':vc.company_describe,'URL':vc.URL },ignore_index = True)
-            # break
+
+            
+            print(page_choose)
+            
         except:
             pass
-
-    df.to_excel("aa.xlsx")
+        
+        
+    df.to_excel("IDG.xlsx")
     
     
-    time.sleep(2000)
-
+    # page
 
 with sync_playwright() as playwright:
     run(playwright)
