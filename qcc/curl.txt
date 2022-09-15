@@ -1,0 +1,128 @@
+```InvestStyle
+
+curl 'https://www.qcc.com/api/investOrg/getInvestStyle' \
+  -H '791ddbdf373a8a9c5223: 76c8614bfdfd89ac18e8f129b4cc6ca6e51a48cfe6db4cb8773b347ffbced0cda2e9c462ddeb50092f795f72f4de4e5d0ea17f92b1784a74da35c4fdc0e6ad02' \
+  -H 'authority: www.qcc.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'cookie: acw_tc=082d349616632081729418831ea7503b54eb92ac1e0b505082ecd17243; QCCSESSID=aabb926c8a40b9952fd35e2eaf; qcc_did=c648d23d-bcfb-4be8-a90f-a783ce23c8ca; UM_distinctid=1833eeecb7ab75-0c3c5e74de53e7-6c5c5514-1fa400-1833eeecb7b19d8; CNZZDATA1254842228=947748639-1663208089-https%253A%252F%252Fwww.google.com%252F%7C1663208089' \
+  -H 'origin: https://www.qcc.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://www.qcc.com/investor/0c2a1b8eada4803abd90386df241cbf3.html' \
+  -H 'sec-ch-ua: "Chromium";v="104", " Not A;Brand";v="99", "Microsoft Edge";v="104"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.44' \
+  -H 'x-pid: 92bcd72974d7cde90e8450df45feae70' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '{"id":"0c2a1b8eada4803abd90386df241cbf3"}' \
+  --compressed
+
+```
+
+```bash
+curl 'https://www.qcc.com/api/investOrg/getInvestCountChart' \
+  -H '8ee05cb246880fa9528d: 692cfc57496dc3e633b210f1a05f4ad75a1ec92506b246ae3f1f806878494abc232576cf379cb6efaedc9fe2eb6cbb227aac73ab219d4098f0c8786c12226a7b' \
+  -H 'authority: www.qcc.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'cookie: acw_tc=082d349616632081729418831ea7503b54eb92ac1e0b505082ecd17243; QCCSESSID=aabb926c8a40b9952fd35e2eaf; qcc_did=c648d23d-bcfb-4be8-a90f-a783ce23c8ca; UM_distinctid=1833eeecb7ab75-0c3c5e74de53e7-6c5c5514-1fa400-1833eeecb7b19d8; CNZZDATA1254842228=947748639-1663208089-https%253A%252F%252Fwww.google.com%252F%7C1663208089' \
+  -H 'origin: https://www.qcc.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://www.qcc.com/investor/0c2a1b8eada4803abd90386df241cbf3.html' \
+  -H 'sec-ch-ua: "Chromium";v="104", " Not A;Brand";v="99", "Microsoft Edge";v="104"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.44' \
+  -H 'x-pid: 92bcd72974d7cde90e8450df45feae70' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '{"id":"0c2a1b8eada4803abd90386df241cbf3"}' \
+  --compressed
+```
+
+```bash
+
+```bash
+curl 'https://www.qcc.com/api/investOrg/getInvestIndustryChart' \
+  -H 'authority: www.qcc.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'bc492151a49d9f91f16f: c3f4f3f0f29c45096f7edd0f19fb749eee3593483a42c9675cedfe0af99b3b8971aa9d6ca2080c7cf8cc32a33282ae2ce78a85dac3c04847f23b2db74abfb769' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'cookie: acw_tc=082d349616632081729418831ea7503b54eb92ac1e0b505082ecd17243; QCCSESSID=aabb926c8a40b9952fd35e2eaf; qcc_did=c648d23d-bcfb-4be8-a90f-a783ce23c8ca; UM_distinctid=1833eeecb7ab75-0c3c5e74de53e7-6c5c5514-1fa400-1833eeecb7b19d8; CNZZDATA1254842228=947748639-1663208089-https%253A%252F%252Fwww.google.com%252F%7C1663208089' \
+  -H 'origin: https://www.qcc.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://www.qcc.com/investor/0c2a1b8eada4803abd90386df241cbf3.html' \
+  -H 'sec-ch-ua: "Chromium";v="104", " Not A;Brand";v="99", "Microsoft Edge";v="104"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.44' \
+  -H 'x-pid: 92bcd72974d7cde90e8450df45feae70' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '{"id":"0c2a1b8eada4803abd90386df241cbf3","year":""}' \
+  --compressed
+```
+
+```bash
+curl 'https://www.qcc.com/api/investOrg/getInvestRoundChart' \
+  -H 'authority: www.qcc.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'bbdf1352c439c2a70c8f: 50185dda57cdffa870ec76e6179883b7b2cb6c3c022a63ea589bf56bf0007c7c1dbca0ed44faf8e8d8a1d8c051e8f047cf51e61475df32d5c66339d63e186e15' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'cookie: acw_tc=082d349616632081729418831ea7503b54eb92ac1e0b505082ecd17243; QCCSESSID=aabb926c8a40b9952fd35e2eaf; qcc_did=c648d23d-bcfb-4be8-a90f-a783ce23c8ca; UM_distinctid=1833eeecb7ab75-0c3c5e74de53e7-6c5c5514-1fa400-1833eeecb7b19d8; CNZZDATA1254842228=947748639-1663208089-https%253A%252F%252Fwww.google.com%252F%7C1663208089' \
+  -H 'origin: https://www.qcc.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://www.qcc.com/investor/0c2a1b8eada4803abd90386df241cbf3.html' \
+  -H 'sec-ch-ua: "Chromium";v="104", " Not A;Brand";v="99", "Microsoft Edge";v="104"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.44' \
+  -H 'x-pid: 92bcd72974d7cde90e8450df45feae70' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '{"id":"0c2a1b8eada4803abd90386df241cbf3","industry":"","year":""}' \
+  --compressed
+```
+
+```bash
+curl 'https://www.qcc.com/api/investOrg/getInvestLocationChart' \
+  -H 'authority: www.qcc.com' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'b2cbcac7e33ccfc0ed13: a212aae746bae0be2b6aedc817b491459cd0e6fd09ce15ccf1df82c83eb80790e0d57a50b8111d378f41d5d2fd0e940dd52e1a8f167822a437f2be6ec1fdeadb' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'cookie: acw_tc=082d349616632081729418831ea7503b54eb92ac1e0b505082ecd17243; QCCSESSID=aabb926c8a40b9952fd35e2eaf; qcc_did=c648d23d-bcfb-4be8-a90f-a783ce23c8ca; UM_distinctid=1833eeecb7ab75-0c3c5e74de53e7-6c5c5514-1fa400-1833eeecb7b19d8; CNZZDATA1254842228=947748639-1663208089-https%253A%252F%252Fwww.google.com%252F%7C1663208089' \
+  -H 'origin: https://www.qcc.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://www.qcc.com/investor/0c2a1b8eada4803abd90386df241cbf3.html' \
+  -H 'sec-ch-ua: "Chromium";v="104", " Not A;Brand";v="99", "Microsoft Edge";v="104"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.44' \
+  -H 'x-pid: 92bcd72974d7cde90e8450df45feae70' \
+  -H 'x-requested-with: XMLHttpRequest' \
+  --data-raw '{"id":"0c2a1b8eada4803abd90386df241cbf3","industry":"","year":""}' \
+  --compressed
+```
