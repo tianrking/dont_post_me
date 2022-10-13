@@ -2,6 +2,11 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 import os
+from typing import Union
+
+from fastapi import FastAPI
+
+app = FastAPI()
 
 ec2 = boto3.client('ec2')
 
@@ -38,14 +43,23 @@ class IP:
         print(response)
         aws_info = response['Addresses']
         for ii in aws_info:
-     #       if len(ii)==5:
-     #          aws.public_ip = ii['PublicIp']
-     #          aws.allocation_id = ii['AllocationId']
-     #          print("releases")
-     #          print(aws.public_ip + " releases\n")
             if len(ii)==10:
                 print(ii['InstanceId'])
                 print(ii['PublicIp'])
+                return ii['InstanceId'],ii['PublicIp']
+
+    def release_ip(self):
+        
+        response = ec2.describe_addresses(Filters=self.filter)
+        print(response)
+        aws_info = response['Addresses']
+        for ii in aws_info:
+            if len(ii)==5:
+                aws.public_ip = ii['PublicIp']
+                aws.allocation_id = ii['AllocationId']
+                #aws.display()
+                print(aws.public_ip + " releases\n")
+                ec2.release_address(AllocationId=aws.allocation_id)
 
 try:
     instance_id = "Your ec2 id"
@@ -54,37 +68,27 @@ try:
     #aws.associate_ip()
     aws.set_filter()
     aws.get_information()
-    exit
+    
 
 except:
     #print("Please input instance_id")
     print(":)")
 
-try:
-    
-    #allocation = ec2.allocate_address(Domain='vpc')
-    #response = ec2.associate_address(AllocationId=alloication['AllocationId'],InstanceId=aws.instance_id)
+@app.get("/get_ip")
+def read_root():
+    aws.set_filter()
+    _,ip = aws.get_information()
+    return {"Server": ip}
 
 
-    filters = [
-        {'Name': 'domain', 'Values': ['vpc']}
-    ]
-    
-    response = ec2.describe_addresses(Filters=filters)
-    #print(response)
-    aws_info = response['Addresses']
+@app.get("/change_ip")
+def read_item(name: str,value:str):
+    if value == 'y':
+        
+        _ , aa_old = aws.get_information() 
 
-    for ii in aws_info:
-        if len(ii)==5:
-            aws.public_ip = ii['PublicIp']
-            aws.allocation_id = ii['AllocationId']
-            #aws.display()
-            print(aws.public_ip + " releases\n")
-            ec2.release_address(AllocationId=aws.allocation_id)
-        if len(ii)==10:
-            print("Now is " + ii['InstanceId'] + " " + ii['PublicIp'] )
-
-except ClientError as e:
-    print(e)
-
-
+        aws.associate_ip()
+        aws.release_ip()
+        
+        _ , aa = aws.get_information()
+        return {"New server":aa,"Delete server":aa_old}
