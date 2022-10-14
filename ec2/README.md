@@ -33,7 +33,13 @@ ddns_url = 'ddns_domain_name'
 ## 运行
 
 ```bash 
-INSTANCE_ID=$INSTANCE_ID uvicorn main_fastapi:app --reload --host 0.0.0.0
+INSTANCE_ID=$INSTANCE_ID uvicorn ec2_changeip:app --reload --host 0.0.0.0
+```
+
+or
+
+```bash 
+INSTANCE_ID=$INSTANCE_ID uvicorn ec2_ddns:app --reload --host 0.0.0.0
 ```
 
 访问 x.x.x.x:port/get_ip  得到当前服务器ip
