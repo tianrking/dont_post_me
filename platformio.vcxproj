@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Path>/home/w0x7ce/anaconda3/envs/AA/bin:/home/w0x7ce/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin</Path>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0FA9C3A8-452B-41EF-A418-9102B170F49F}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>platformio -f -c visualstudio run</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>platformio -f -c visualstudio run --target clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>PLATFORMIO=60104;ARDUINO_SAMD_ZERO;__SAMD21__;__SAMD21G18A__;ARM_MATH_CM0PLUS;SEEED_XIAO_M0;ARDUINO_SEEED_XIAO_M0;ARDUINO=10805;F_CPU=48000000L;USBCON;USB_VID=0x2886;USB_PID=0x802F;USB_PRODUCT="Seeeduino XIAO";USB_MANUFACTURER="Seeed";ARDUINO_ARCH_SAMD;USB_CONFIG_POWER=100</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>/home/w0x7ce/Desktop/ppp/include;/home/w0x7ce/Desktop/ppp/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/PCF8563-Arduino-Library/src;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/Servo/src;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/U8g2/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Wire;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/SPI;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/Adafruit Zero DMA Library;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/Adafruit Zero DMA Library/utility;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-cmsis/CMSIS/Core/Include;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-cmsis-atmel/CMSIS/Device/ATMEL;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino/TinyUSB;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino/TinyUSB/Adafruit_TinyUSB_ArduinoCore;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino/TinyUSB/Adafruit_TinyUSB_ArduinoCore/tinyusb/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-cmsis/CMSIS/DSP/Include;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/variants/XIAO_m0;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Adafruit_ZeroDMA;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Adafruit_ZeroDMA/utility;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/EnergySaving/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/FlashStorage/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/HID;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/I2S/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/LoRaWan;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Seeed_Arduino_FreeRTOS/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Seeed_Arduino_LCD;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/SoftwareSerial;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/TimerTC3;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/TimerTCC0;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/USBHost/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/arm-none-eabi;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/include;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/include-fixed;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include</NMakeIncludeSearchPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>platformio run</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>platformio run --target clean</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>PLATFORMIO=60104;ARDUINO_SAMD_ZERO;__SAMD21__;__SAMD21G18A__;ARM_MATH_CM0PLUS;SEEED_XIAO_M0;ARDUINO_SEEED_XIAO_M0;ARDUINO=10805;F_CPU=48000000L;USBCON;USB_VID=0x2886;USB_PID=0x802F;USB_PRODUCT="Seeeduino XIAO";USB_MANUFACTURER="Seeed";ARDUINO_ARCH_SAMD;USB_CONFIG_POWER=100</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>/home/w0x7ce/Desktop/ppp/include;/home/w0x7ce/Desktop/ppp/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/PCF8563-Arduino-Library/src;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/Servo/src;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/U8g2/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Wire;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/SPI;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/Adafruit Zero DMA Library;/home/w0x7ce/Desktop/ppp/.pio/libdeps/seeed_xiao/Adafruit Zero DMA Library/utility;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-cmsis/CMSIS/Core/Include;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-cmsis-atmel/CMSIS/Device/ATMEL;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino/TinyUSB;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino/TinyUSB/Adafruit_TinyUSB_ArduinoCore;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/cores/arduino/TinyUSB/Adafruit_TinyUSB_ArduinoCore/tinyusb/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-cmsis/CMSIS/DSP/Include;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/variants/XIAO_m0;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Adafruit_ZeroDMA;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Adafruit_ZeroDMA/utility;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/EnergySaving/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/FlashStorage/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/HID;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/I2S/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/LoRaWan;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Seeed_Arduino_FreeRTOS/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/Seeed_Arduino_LCD;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/SoftwareSerial;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/TimerTC3;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/TimerTCC0;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/framework-arduino-samd-seeed/libraries/USBHost/src;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include/c++/7.2.1/arm-none-eabi;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/include;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/include-fixed;$(HOMEDRIVE)$(HOMEPATH)/.platformio/packages/toolchain-gccarmnoneeabi/arm-none-eabi/include</NMakeIncludeSearchPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <None Include="platformio.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src/main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
