@@ -10,6 +10,8 @@ app = FastAPI()
 
 ec2 = boto3.client('ec2')
 
+instance_id =  os.getenv("INSTANCE_ID", default=None) # change this {INSTANCE_ID} INSTANCE_ID={INSTANCE_ID} 
+
 class IP:
     
     def __init__(self,ins_id):
@@ -62,10 +64,8 @@ class IP:
                 ec2.release_address(AllocationId=aws.allocation_id)
 
 try:
-    instance_id = "Your ec2 id"
-    aws = IP("i-05f47f33b9bef9fe5")
-    #aws = IP(str(instance_id))
-    #aws.associate_ip()
+    
+    aws = IP(instance_id) instance_id
     aws.set_filter()
     aws.get_information()
     
