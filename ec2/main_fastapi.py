@@ -65,7 +65,7 @@ class IP:
 
 try:
     
-    aws = IP(instance_id) instance_id
+    aws = IP(instance_id) 
     aws.set_filter()
     aws.get_information()
     
