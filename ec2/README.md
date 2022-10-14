@@ -21,3 +21,8 @@ aws configure
 ```bash 
 INSTANCE_ID=$INSTANCE_ID uvicorn main_fastapi:app --reload --host 0.0.0.0
 ```
+
+- API 
+
+    - x.x.x.x:port/get_ip
+    - x.x.x.x:port/change_ip?value=y&name=1
