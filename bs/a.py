@@ -87,6 +87,7 @@ class _crawl_data:
     Description = ""
     Logo = ""
     More = ""
+    Products_Direction = ""
     
     def print_value(self):
         print(self.Name)
@@ -95,11 +96,11 @@ class _crawl_data:
         print(self.Email)
         print(self.Country)
         print(self.Description)
-        # print(self.More)
+        print(self.More)
         print(self.Industry_Area)
         print(self.Logo)
-        # print(self.Location)
-        # print(self.Industry_Area)
+        print(self.Location)
+        print(self.Products_Direction)
 
 result = soup.find_all("li",class_="partner-list")
 
@@ -119,6 +120,7 @@ for i in result:
     
     ii = i.find_all("a")
     Crawl_Data = _crawl_data()
+    products_list = []
     
     try: 
         # Crawl_Data.Url = ii[1].get("href")
@@ -148,9 +150,18 @@ for i in result:
         except:
             Crawl_Data.Industry_Area = ""
             print("Dont have tage")
-            
+
+        response_temp = requests.get(Crawl_Data.More, headers=headers)
+        soup_temp = BeautifulSoup(response_temp.text, "html.parser")
+        Crawl_Data.Products = soup_temp.find("div",class_="advan-content")
+        Crawl_Data.Products_Direction = soup_temp.find("div",attrs={'class':'content','id':'content2'}).find("h4").get_text()
+        products_list_temp = soup_temp.find("div",attrs={'class':'content','id':'content2'}).find_all("li")
+        
+        for i in products_list_temp :
+            products_list.append(i.find("a").get_text())
+                
         print(num_flag,"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
-        # Crawl_Data.print_value()
+        
     
     except:
         # print(ii)
@@ -164,8 +175,16 @@ for i in result:
                     "Industry_Area":Crawl_Data.Industry_Area,
                     "Url":Crawl_Data.Url,
                     "Country":Crawl_Data.Country,
+                    "Products_Direction":Crawl_Data.Products_Direction,
+                    "Products_List": products_list,
+                    "More":Crawl_Data.More,
                     "Logo":Crawl_Data.Logo
                     }, ignore_index = True)
+    
+    # Crawl_Data.Products = Crawl_Data.Products.find("div",class_ = "content-wrap")
+    # Crawl_Data.Products = Crawl_Data.Products.find("h4").getText()
+
+    # Crawl_Data.print_value()
     
     num_flag = num_flag + 1 
     
@@ -173,10 +192,3 @@ for i in result:
     #     break
 
 df.to_excel("a.xlsx", index=False, header=True)
-# Phone
-# Email 
-# Location 
-# Industry_Area
-# Description
-# Logo
-# More 
