@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "ISSUE_TEMPLATE/**"
+      - ".github/**.md"
+      - ".gitignore"
+      - "demo/**"
+      - "docker/**"
+      - "HOW_TO.md"
+      - "TASK.md"
+      - "SECURITY.md"
+      - "README.md"
+      - "README_zh-CN.md"
+      
+  schedule:
+    #UTC 0 
+    - cron: '0 0 * * *'
+
+jobs:
+  lint:
+    name: test_ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1.0.0
+
+      - name: Checkout
+        uses: actions/checkout@master
+        
+
+      - name: GIT CLONE
+        run: |
+            sudo apt-get update
+            sudo apt-get install \
+                  git -y 
+            git config --global user.name 'tianrking'
+            git config --global user.email 'tian.r.king@gmail.com'
+            git clone https://github.com/tianrking/dont_post_me ~/dont_post_me
+            
+      - name: RUN
+        run: |
+            python ~/dont_post_me/greeks.live/a.py
