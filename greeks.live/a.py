@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 
 class Trader:
     
@@ -179,3 +180,5 @@ while True:
             flag = 1
         
         print(cost)
+
+    print(time.asctime(time.localtime(time.time())))
