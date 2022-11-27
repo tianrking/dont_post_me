@@ -1,4 +1,5 @@
 import requests
+import json
 
 class Trader:
     
@@ -49,6 +50,32 @@ class Trader:
     def change(self) -> str:
         
         return requests.post(self.eth_edit_url, cookies=self.cookies, headers=self.headers, json=self.json_data)
+    
+    def get_eth_now_price(self,crypto_pair = "eth_usd") -> str:
+        
+        requests_url = "https://test.deribit.com/api/v2/public/get_index_price?index_name=%s" % str(crypto_pair)
+        self.eth_price = requests.get(requests_url)
+        return self.eth_price.text
+    
+    def set_eth_gap(self, _gap=50 ) -> None:
+        
+        self.gap = _gap
+        
+    def get_eth_gap(self, _gap=50 ) -> int:
+        
+        return self.gap
+        
+    def set_eth_price_high(self, eth_price_high = 1500 ) -> None:
+    
+        self.eth_price_high = eth_price_high
+    
+    def set_eth_price_low(self, eth_price_low = 1000 ) -> None:
+    
+        self.eth_price_low = eth_price_low
+        
+    def get_eth_price_range(self) -> (int,int):
+        
+        return self.eth_price_low,self.eth_price_high
         
     
 cookies = {
@@ -77,39 +104,78 @@ headers = {
     'sec-ch-ua-platform': '"Windows"',
 }
 
-json_data = {
-    'type': 'AdvancedDynamicDeltaStrategy',
-    'curr': 'ETH',
-    'subId': 266545,
-    'param': {
-        'isRun': False,
-        'maxPositiveCoinDelta': 1,
-        'maxNegativeCoinDelta': 1,
-        'maxPositiveUsdDelta': 1000,
-        'maxNegativeUsdDelta': 1000,
-        'positiveHedgeRatio': 100,
-        'negativeHedgeRatio': 100,
-        'coinTargetDelta': 0,
-        'usdTargetDelta': 0,
-        'eachOrderSize': 2,
-        'makerEachOrderSize': 20,
-        'longFuture': 'ETH-PERPETUAL',
-        'shortFuture': 'ETH-PERPETUAL',
-        'coinDeltaMode': False,
-        'orderType': 'taker',
-    },
-}
+def set_payload(_status,_usdTargetDelta = 1,_eachOrderSize=2) -> str:
+    
+    json_data = {
+        'type': 'AdvancedDynamicDeltaStrategy',
+        'curr': 'ETH',
+        'subId': 266545,
+        'param': {
+            'isRun': True,
+            'maxPositiveCoinDelta': 1,
+            'maxNegativeCoinDelta': 1,
+            'maxPositiveUsdDelta': 1000,
+            'maxNegativeUsdDelta': 1000,
+            'positiveHedgeRatio': 100,
+            'negativeHedgeRatio': 100,
+            'coinTargetDelta': 0,
+            'usdTargetDelta': _usdTargetDelta,
+            'eachOrderSize': _eachOrderSize,
+            'makerEachOrderSize': 20,
+            'longFuture': 'ETH-PERPETUAL',
+            'shortFuture': 'ETH-PERPETUAL',
+            'coinDeltaMode': False,
+            'orderType': 'taker',
+        },
+    }
+    return json_data
+
 
 test_class = Trader()
 test_class.set_cookies(cookies)
+json_data = set_payload(False,0,_eachOrderSize=2)
 test_class.set_json_data(json_data)
 test_class.set_headers(headers)
 test_class.set_eth_edit_url('https://www.greeks.live/ddh/strategy/edit')
+test_class.set_eth_gap()
+test_class.set_eth_price_high()
+test_class.set_eth_price_low()
 
-## 0 1
-response = test_class.change()
+flag = 0
 
+while True:
+    
+    cost = test_class.get_eth_now_price() 
+    cost = json.loads(cost)['result']['index_price']
+    cost = float(cost)
+    
+    eth_gap = test_class.get_eth_gap()
+    eth_low_price , eth_high_price = test_class.get_eth_price_range()
+    
+    if float(eth_high_price + eth_gap) < cost:
+        
+        if flag != 2:
+            json_data = set_payload(True,-10,_eachOrderSize=2)
+            test_class.set_json_data(json_data)
+            flag = 2
+        
+        
+        print(eth_high_price + eth_gap)
+        
+    elif float(eth_low_price - eth_gap) > cost:
+        
+        if flag !=  3:
+            json_data = set_payload(True,10,_eachOrderSize=2)
+            test_class.set_json_data(json_data)
+            flag = 3
+        
+        print(eth_low_price - eth_gap)
 
-
-# response = requests.post('https://www.greeks.live/ddh/strategy/edit', cookies=cookies, headers=headers, json=json_data)
-print(response.text)
+    else :
+        
+        if flag !=  1:
+            json_data = set_payload(True,0,_eachOrderSize=2)
+            test_class.set_json_data(json_data)
+            flag = 1
+        
+        print(cost)
