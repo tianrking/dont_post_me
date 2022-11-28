@@ -1,0 +1,15 @@
+{
+    "jsonrpc":"2.0",
+    "id":9929,
+    "result":{
+        "token_type":"bearer",
+        "scope":"account:read_write block_trade:read_write connection custody:read_write mainaccount trade:read_write wallet:read_write",
+        "refresh_token":"1700913568601.1KYTIf39.lEgCUbayexUlU1NySpGfueAbAnEMMedRGYsqmU97q8QZoY3LiioBYGzuVMcMtos4SkJagJwYjQvZX7KUG8U1oO6eGVu-FL7F7rfIQZ7ZHQ3AEBpDJEe8vutZ5TJAjONgn9_ItDbs1Q829S3r5dt0_9A05eSI4b6K_qiysnKYYuk6gtkqL4JDgWNdCWaKICWfxi8NFKwf_surERml99L4CaF2yB2rJlKcbbO1HbLt1W2ZnV4401n8ScngtbZYshQXJ9uDLpB77E9_wIx_B5dc_PqVaQKF_7znZCmLcv2ZaEEOrxIEBBCkGsq6FtELPM8l3JnmwNYrHrPR",
+        "expires_in":31536000,
+        "access_token":"1700913568601.1AxXbsfg.dtSV1M0Kh2g_xWENc1kJjn_PZwgtaS5xbn8OcKb5awReKP99OzeqhfzSSnfuIl4AJo0aOXq5R0jeZb_XZ4TX7u6Al47NbuAfdrtvdnfwrylFcJ7Nw8PUE_1GE2aj3ULiln09aDbzzUS742ZXcuBp6XSmTSQeiz8UsfX0Sa4ImfSuviLbMasiqN2bxzNoiBOOGOEdTPJdLkUg28o4AJQoBWbpJJKXAN7QqTsMpb45siQJW2tP1u5GqbOXjW8N--tfrykM4YpLdoHp-HgjxFnyxAiQxKZTEGkh76vDN_6WD32IPwpCSbLOi9gtlpRTg1ul2ohPVusAUWaCBw"
+    },
+    "usIn":1669377568601146,
+    "usOut":1669377568601366,
+    "usDiff":220,
+    "testnet":true
+}
